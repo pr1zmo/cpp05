@@ -25,11 +25,11 @@ This project is focused on exploring and implementing concepts from C++05. It in
 ## Usage
 Compile the code using your preferred C++ compiler:
 ```bash
-g++ -std=c++05 <source-file>.cpp -o <output-file>
+make
 ```
 Run the compiled program:
 ```bash
-./<output-file>
+./Bureaucrat
 ```
 
 ## Contributing
