@@ -1,7 +1,7 @@
 NAME = Form
 CC = c++
-CFLAGS = -Wall -Wextra -Werror -std=c++98 #-fsanitize=address
-SRCS = $(wildcard *.cpp)
+CFLAGS = -Wall -Wextra -Werror -std=c++98 -I./inc  #-fsanitize=address
+SRCS = $(wildcard src/*.cpp)
 RM = rm -f
 
 all: $(NAME)
