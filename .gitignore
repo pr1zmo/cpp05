@@ -6,5 +6,6 @@ bureaucrat
 *.a
 ./.vscode
 z/
+.vscode/
 more_forms
 *_shrubbery
