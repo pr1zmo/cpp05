@@ -2,15 +2,15 @@
 #include <iostream>
 
 ShrubberyCreationForm::ShrubberyCreationForm()
-	: AForm("NONAME", SIGN_GRADE, EXEC_GRADE) {
+	: Form("NONAME", SIGN_GRADE, EXEC_GRADE) {
 }
 
 ShrubberyCreationForm::ShrubberyCreationForm(std::string target)
-	: AForm(target, SIGN_GRADE, EXEC_GRADE) {
+	: Form(target, SIGN_GRADE, EXEC_GRADE) {
 }
 
 ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm& other)
-	: AForm(other._target, SIGN_GRADE, EXEC_GRADE) {
+	: Form(other._target, SIGN_GRADE, EXEC_GRADE) {
 	*this = other;
 }
 
@@ -26,7 +26,6 @@ ShrubberyCreationForm::~ShrubberyCreationForm() {
 
 void ShrubberyCreationForm::beExecuted(void) const {
 	std::ofstream file;
-	std::cout << "WWWWWWWWWWWWWWWWWWWWWWHAT??? \"" << this->_target << "\""<< std::endl;
 	std::string filename = this->_target + "_shrubbery";
 
 	file.open(filename.c_str());

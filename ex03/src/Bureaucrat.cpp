@@ -3,6 +3,7 @@
 
 Bureaucrat::Bureaucrat()
 	: _name("Default Bureaucrat"), _grade(150) {
+	std::cout << "Bureaucrat: Default constructor called" << std::endl;
 }
 
 Bureaucrat::Bureaucrat(std::string name, int grade)
@@ -12,13 +13,17 @@ Bureaucrat::Bureaucrat(std::string name, int grade)
 	else if (grade > 150)
 		throw Bureaucrat::GradeTooLowException();
 	this->_grade = grade;
+	std::cout << "Bureaucrat: Parameterized constructor called with name: "
+	          << this->_name << " and grade: " << this->_grade << std::endl;
 }
 
 Bureaucrat::Bureaucrat(const Bureaucrat& other)
 	: _name(other._name), _grade(other._grade) {
+	std::cout << "Bureaucrat: Copy constructor called" << std::endl;
 }
 
 Bureaucrat& Bureaucrat::operator=(const Bureaucrat& other) {
+	std::cout << "Bureaucrat: Copy assignment operator called" << std::endl;
 	if (this != &other) {
 		this->_grade = other._grade;
 	}
@@ -26,6 +31,7 @@ Bureaucrat& Bureaucrat::operator=(const Bureaucrat& other) {
 }
 
 Bureaucrat::~Bureaucrat() {
+	std::cout << "Bureaucrat: Destructor called" << std::endl;
 }
 
 const char* Bureaucrat::GradeTooHighException::what() const throw() {
@@ -63,7 +69,7 @@ std::ostream& operator<<(std::ostream& os, const Bureaucrat& bureaucrat) {
 	return os;
 }
 
-void Bureaucrat::signForm(AForm &f){
+void Bureaucrat::signForm(Form &f){
 	try{
 		f.beSigned(*this);
 		std::cout << this->getName() << " Signed " << f.getName() << std::endl;
@@ -74,7 +80,7 @@ void Bureaucrat::signForm(AForm &f){
 	}
 }
 
-void Bureaucrat::executeForm(AForm const & form){
+void Bureaucrat::executeForm(Form const & form){
 	try{
 		form.execute(*this);
 		std::cout << this->getName() << " executed " << form.getName() << std::endl;

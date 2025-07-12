@@ -1,0 +1,10 @@
+intern
+make_form
+form
+bureaucrat
+*.o
+*.a
+./.vscode
+./z
+more_forms
+*_shrubbery

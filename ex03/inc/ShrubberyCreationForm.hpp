@@ -7,16 +7,16 @@
 # define EXEC_GRADE 137
 
 // sign 145, exec 137;
-#include "AForm.hpp"
+#include "Form.hpp"
 #include <iostream>
 #include <fstream>
 
-class AForm;
+class Form;
 
-class ShrubberyCreationForm : public AForm {
+class ShrubberyCreationForm : public Form {
 	private:
 		std::string _target;
-		void beExecuted(void) const;
+		void beExecuted(void);
 
 	public:
 		ShrubberyCreationForm();

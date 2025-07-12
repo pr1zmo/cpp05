@@ -9,12 +9,12 @@
 #include <iostream>
 #include <cstdlib>
 #include <ctime>
-#include "AForm.hpp"
+#include "Form.hpp"
 
-class RobotomyRequestForm : public AForm {
+class RobotomyRequestForm : public Form {
 	private:
 		std::string _target;
-		void beExecuted(void) const;
+		void beExecuted(void);
 
 	public:
 		RobotomyRequestForm();

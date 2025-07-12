@@ -1,20 +1,24 @@
 #include "ShrubberyCreationForm.hpp"
-#include <iostream>
+#include <fstream>
 
 ShrubberyCreationForm::ShrubberyCreationForm()
-	: AForm("NONAME", SIGN_GRADE, EXEC_GRADE) {
+	: AForm("ShrubberyCreation", 145, 137), _target("NONAME") {
+	std::cout << "ShrubberyCreationForm: Default constructor called" << std::endl;
 }
 
 ShrubberyCreationForm::ShrubberyCreationForm(std::string target)
-	: AForm(target, SIGN_GRADE, EXEC_GRADE) {
+	: AForm("ShrubberyCreation", 145, 137), _target(target){
+	std::cout << "ShurbberyCreationForm: parameter constructor\n";
 }
 
 ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm& other)
-	: AForm(other._target, SIGN_GRADE, EXEC_GRADE) {
+	: AForm("ShrubberyCreation", 145, 137), _target(other._target) {
+	std::cout << "ShrubberyCreationForm: Copy constructor called" << std::endl;
 	*this = other;
 }
 
 ShrubberyCreationForm& ShrubberyCreationForm::operator=(const ShrubberyCreationForm& other) {
+	std::cout << "ShrubberyCreationForm: Copy assignment operator called\n";
 	if (this != &other) {
 		this->_target = other._target;
 	}
@@ -22,11 +26,12 @@ ShrubberyCreationForm& ShrubberyCreationForm::operator=(const ShrubberyCreationF
 }
 
 ShrubberyCreationForm::~ShrubberyCreationForm() {
+	std::cout << "ShrubberyCreationForm: Destructor called" << std::endl;
 }
 
-void ShrubberyCreationForm::beExecuted(void) const {
+void ShrubberyCreationForm::beExecuted(void) const
+{
 	std::ofstream file;
-	std::cout << "WWWWWWWWWWWWWWWWWWWWWWHAT??? \"" << this->_target << "\""<< std::endl;
 	std::string filename = this->_target + "_shrubbery";
 
 	file.open(filename.c_str());

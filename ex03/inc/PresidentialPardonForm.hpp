@@ -7,12 +7,12 @@
 # define EXEC_GRADE 5
 
 #include <iostream>
-#include "AForm.hpp"
+#include "Form.hpp"
 
-class PresidentialPardonForm : public AForm {
+class PresidentialPardonForm : public Form {
 	private:
 		std::string _target;
-		void beExecuted(void) const;
+		void beExecuted(void);
 
 	public:
 		PresidentialPardonForm();

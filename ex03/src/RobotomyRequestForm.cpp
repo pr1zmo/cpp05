@@ -2,15 +2,15 @@
 #include <iostream>
 
 RobotomyRequestForm::RobotomyRequestForm()
-	: AForm("NONAME", SIGN_GRADE, EXEC_GRADE) {
+	: Form("NONAME", SIGN_GRADE, EXEC_GRADE) {
 }
 
 RobotomyRequestForm::RobotomyRequestForm(std::string target)
-	: AForm(target, SIGN_GRADE, EXEC_GRADE) {
+	: Form(target, SIGN_GRADE, EXEC_GRADE) {
 }
 
 RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm& other)
-	: AForm(other._target, SIGN_GRADE, EXEC_GRADE) {
+	: Form(other._target, SIGN_GRADE, EXEC_GRADE) {
 	*this = other;
 }
 
@@ -24,7 +24,7 @@ RobotomyRequestForm& RobotomyRequestForm::operator=(const RobotomyRequestForm& o
 RobotomyRequestForm::~RobotomyRequestForm() {
 }
 
-void RobotomyRequestForm::beExecuted(void) const {
+void RobotomyRequestForm::beExecuted(void){
 	std::cout << "* Drilling noises *\n";
 	std::srand(std::time(0));
 	int rand = std::rand() % 2;
