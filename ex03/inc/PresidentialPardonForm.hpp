@@ -12,7 +12,7 @@
 class PresidentialPardonForm : public Form {
 	private:
 		std::string _target;
-		void beExecuted(void);
+		void beExecuted(void) const;
 
 	public:
 		PresidentialPardonForm();

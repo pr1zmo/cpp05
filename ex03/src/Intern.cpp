@@ -39,15 +39,13 @@ static Form	*makeShrubbery(const std::string target)
 }
 
 Form* Intern::makeForm(std::string formName, std::string target){
-	Form *(*all_forms[])(const std::string target) = {&makePresident, &makeRobot, &makeShrubbery};
+	Form *(*allForms[])(const std::string target) = {&makePresident, &makeRobot, &makeShrubbery};
 	std::string forms[] = {"shrubbery creation", "presidential pardon", "Roboto request"};
-	int i = 0;
-	for (std::strinc s : forms){
-		if (s.compare(formName)){
-			std::cout << "Intern creates " << form_to_create << " now" << std::endl;
+	for (int i = 0; i < 3; i++){
+		if (forms[i].compare(formName)){
+			std::cout << "Intern creates " << formName << " now" << std::endl;
 			return (allForms[i](target));
 		}
-		i++;
 	}
 	throw Intern::FormDoesNotExistException();
 	return NULL;
