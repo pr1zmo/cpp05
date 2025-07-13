@@ -5,9 +5,11 @@
 #include <exception>
 #include "Form.hpp"
 
-class Intern {
+class Intern{
 	public:
 		Intern();
+		Intern(const Intern& other);
+		Intern& operator=(const Intern& other);
 		~Intern();
 
 		class FormDoesNotExistException : public std::exception{
