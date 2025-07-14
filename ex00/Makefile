@@ -1,19 +1,22 @@
-NAME = Bureaucrat
+NAME = bureaucrat
 CC = c++
-CFLAGS = -Wall -Wextra -Werror -std=c++98 #-fsanitize=address
-SRCS = $(wildcard *.cpp)
-RM = rm -f
+CFLAGS = -Wall -Wextra -Werror -std=c++98 -I./inc
+SRCS = Bureaucrat.cpp main.cpp
+OBJS = $(SRCS:.cpp=.o)
 
 all: $(NAME)
 
-$(NAME): $(SRCS)
-	$(CC) $(CFLAGS) $(SRCS) -o $(NAME)
+$(NAME): $(OBJS)
+	$(CC) $(CFLAGS) -o $(NAME) $(OBJS)
+
+%.o: %.cpp
+	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	@echo "Nothing to clean (no .o files used)"
+	rm -f $(OBJS)
 
 fclean: clean
-	$(RM) $(NAME)
+	rm -f $(NAME)
 
 re: fclean all
 

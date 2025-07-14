@@ -2,33 +2,41 @@
 #include <iostream>
 
 RobotomyRequestForm::RobotomyRequestForm()
-	: AForm("NONAME", SIGN_GRADE, EXEC_GRADE) {
+	: Form("roboto form", SIGN_GRADE, EXEC_GRADE) {
 }
 
 RobotomyRequestForm::RobotomyRequestForm(std::string target)
-	: AForm(target, SIGN_GRADE, EXEC_GRADE) {
+	: Form("roboto form", SIGN_GRADE, EXEC_GRADE), _target(target){
+
 }
 
 RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm& other)
-	: AForm(other._target, SIGN_GRADE, EXEC_GRADE) {
+	: Form("roboto form", SIGN_GRADE, EXEC_GRADE), _target(other._target) {
 	*this = other;
 }
 
 RobotomyRequestForm& RobotomyRequestForm::operator=(const RobotomyRequestForm& other) {
-	if (this != &other) {
+	if (this != &other)
 		this->_target = other._target;
-	}
 	return *this;
 }
 
 RobotomyRequestForm::~RobotomyRequestForm() {
 }
 
-void RobotomyRequestForm::beExecuted(void) const {
+int randomAction() {
 	std::cout << "* Drilling noises *\n";
 	std::srand(std::time(0));
-	int rand = std::rand() % 2;
-	if (rand)
+	return (std::rand() % 2);
+}
+
+void RobotomyRequestForm::execute(Bureaucrat const &executor)const
+{
+	if ((int)executor.getGrade() > this->getExecGrade())
+		throw (Bureaucrat::GradeTooLowException());
+	else if (this->getIsSigned() == false)
+		throw (Form::FormNotSignedException());
+	if (randomAction())
 		std::cout << this->_target << " has been robotomized.\n";
 	else
 		std::cout << "Failed Robotomization for " << this->_target << ".\n";

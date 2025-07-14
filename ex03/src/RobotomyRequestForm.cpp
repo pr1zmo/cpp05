@@ -1,16 +1,17 @@
 #include "RobotomyRequestForm.hpp"
-#include <iostream>
+#include <ctime>
+#include <cstdlib>
 
 RobotomyRequestForm::RobotomyRequestForm()
-	: Form("NONAME", SIGN_GRADE, EXEC_GRADE) {
+	: AForm("RobotoRequest", 72, 45), _target("NONAME") {
 }
 
 RobotomyRequestForm::RobotomyRequestForm(std::string target)
-	: Form(target, SIGN_GRADE, EXEC_GRADE) {
+	: AForm("RobotoRequest", 72, 45), _target(target) {
 }
 
 RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm& other)
-	: Form(other._target, SIGN_GRADE, EXEC_GRADE) {
+	: AForm("RobotoRequest", 72, 45), _target(other._target) {
 	*this = other;
 }
 
@@ -24,12 +25,12 @@ RobotomyRequestForm& RobotomyRequestForm::operator=(const RobotomyRequestForm& o
 RobotomyRequestForm::~RobotomyRequestForm() {
 }
 
-void RobotomyRequestForm::beExecuted(void) const {
-	std::cout << "* Drilling noises *\n";
+void	RobotomyRequestForm::beExecuted(void) const
+{
 	std::srand(std::time(0));
 	int rand = std::rand() % 2;
 	if (rand)
-		std::cout << this->_target << " has been robotomized.\n";
+		std::cout << this->_target << " has been robotomized." << std::endl;
 	else
-		std::cout << "Failed Robotomization for " << this->_target << ".\n";
+		std::cout << "Failed: " << this->_target << "." << std::endl;
 }

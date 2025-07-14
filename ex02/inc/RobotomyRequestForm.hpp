@@ -2,19 +2,18 @@
 #define RobotomyRequestForm_HPP
 
 # undef  SIGN_GRADE
-# define SIGN_GRADE 72
+# define SIGN_GRADE 25
 # undef  EXEC_GRADE
-# define EXEC_GRADE 45
+# define EXEC_GRADE 5
 
 #include <iostream>
+#include "Form.hpp"
 #include <cstdlib>
 #include <ctime>
-#include "AForm.hpp"
 
-class RobotomyRequestForm : public AForm {
+class RobotomyRequestForm : public Form {
 	private:
 		std::string _target;
-		void beExecuted(void) const;
 
 	public:
 		RobotomyRequestForm();
@@ -22,6 +21,7 @@ class RobotomyRequestForm : public AForm {
 		RobotomyRequestForm(const RobotomyRequestForm& other);
 		RobotomyRequestForm& operator=(const RobotomyRequestForm& other);
 		~RobotomyRequestForm();
+		void execute(Bureaucrat const &executor)const;
 };
 
 #endif

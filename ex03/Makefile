@@ -1,19 +1,24 @@
 NAME = intern
 CC = c++
-CFLAGS = -Wall -Wextra -Werror -std=c++98 -I./inc #-fsanitize=address
+CFLAGS = -Wall -Wextra -Werror -std=c++98 -I./inc
+OBJS = $(SRCS:.cpp=.o)
 SRCS = $(wildcard src/*.cpp)
-RM = rm -f
+OTHER = $(wildcard *_shrub*)
 
 all: $(NAME)
 
-$(NAME): $(SRCS)
-	$(CC) $(CFLAGS) $(SRCS) -o $(NAME)
+$(NAME): $(OBJS)
+	$(CC) $(CFLAGS) -o $(NAME) $(OBJS)
+
+%.o: %.cpp
+	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	@echo "Nothing to clean (no .o files used)"
+	rm -f $(OBJS)
+	rm -f $(OTHER)
 
 fclean: clean
-	$(RM) $(NAME)
+	rm -f $(NAME)
 
 re: fclean all
 

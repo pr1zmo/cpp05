@@ -6,17 +6,13 @@
 # undef  EXEC_GRADE
 # define EXEC_GRADE 137
 
-// sign 145, exec 137;
-#include "AForm.hpp"
 #include <iostream>
 #include <fstream>
+#include "Form.hpp"
 
-class AForm;
-
-class ShrubberyCreationForm : public AForm {
+class ShrubberyCreationForm : public Form {
 	private:
 		std::string _target;
-		void beExecuted(void) const;
 
 	public:
 		ShrubberyCreationForm();
@@ -24,6 +20,7 @@ class ShrubberyCreationForm : public AForm {
 		ShrubberyCreationForm(const ShrubberyCreationForm& other);
 		ShrubberyCreationForm& operator=(const ShrubberyCreationForm& other);
 		~ShrubberyCreationForm();
+		void execute(Bureaucrat const &executor) const;
 };
 
 #endif

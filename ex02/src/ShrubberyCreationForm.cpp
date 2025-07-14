@@ -1,47 +1,56 @@
 #include "ShrubberyCreationForm.hpp"
 #include <iostream>
+#include <fstream>
 
 ShrubberyCreationForm::ShrubberyCreationForm()
-	: AForm("NONAME", SIGN_GRADE, EXEC_GRADE) {
+	: Form("shrubbery form", SIGN_GRADE, EXEC_GRADE), _target("NONAME") {
 }
 
 ShrubberyCreationForm::ShrubberyCreationForm(std::string target)
-	: AForm(target, SIGN_GRADE, EXEC_GRADE) {
+	: Form("shrubbery form", SIGN_GRADE, EXEC_GRADE), _target(target){
 }
 
 ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm& other)
-	: AForm(other._target, SIGN_GRADE, EXEC_GRADE) {
+	: Form(other), _target(other._target) {
 	*this = other;
 }
 
 ShrubberyCreationForm& ShrubberyCreationForm::operator=(const ShrubberyCreationForm& other) {
-	if (this != &other) {
+	if (this != &other)
 		this->_target = other._target;
-	}
 	return *this;
 }
 
 ShrubberyCreationForm::~ShrubberyCreationForm() {
 }
 
-void ShrubberyCreationForm::beExecuted(void) const {
-	std::ofstream file;
-	std::cout << "WWWWWWWWWWWWWWWWWWWWWWHAT??? \"" << this->_target << "\""<< std::endl;
-	std::string filename = this->_target + "_shrubbery";
+void asciiTree(std::string target) {
+	std::ofstream outfile((target + "_shrubbery").c_str());
 
-	file.open(filename.c_str());
+	if (!outfile.is_open()) {
+		std::cerr << "Error: Could not open file " << target + "_shrubbery" << std::endl;
+		return;
+	}
 
-	file << "        ccee88oo" << std::endl;
-	file << "      C8O8O8Q8PoOb o8oo" << std::endl;
-	file << "    dOB69QO8PdUOpugoO9bD" << std::endl;
-	file << "   CgggbU8OU qOp qOdoUOdcb" << std::endl;
-	file << "       6OuU  /p u gcoUodpP" << std::endl;
-	file << "          \\\\//  /douUP" << std::endl;
-	file << "            \\\\////" << std::endl;
-	file << "             |||/\\" << std::endl;
-	file << "             |||\\/" << std::endl;
-	file << "             |||||" << std::endl;
-	file << "       .....//||||\\...." << std::endl;
+	outfile << "        ccee88oo" << std::endl;
+	outfile << "      C8O8O8Q8PoOb o8oo" << std::endl;
+	outfile << "    dOB69QO8PdUOpugoO9bD" << std::endl;
+	outfile << "   CgggbU8OU qOp qOdoUOdcb" << std::endl;
+	outfile << "       6OuU  /p u gcoUodpP" << std::endl;
+	outfile << "          \\\\//  /douUP" << std::endl;
+	outfile << "            \\\\////" << std::endl;
+	outfile << "             |||/\\" << std::endl;
+	outfile << "             |||\\/" << std::endl;
+	outfile << "             |||||" << std::endl;
+	outfile << "       .....//||||\\...." << std::endl;
 
-	file.close();
+	outfile.close();
+}
+ 
+void	ShrubberyCreationForm::execute(Bureaucrat const &executor) const{
+	if ((int)executor.getGrade() > this->getExecGrade())
+		throw (Bureaucrat::GradeTooLowException());
+	else if (this->getIsSigned() == false)
+		throw (Form::FormNotSignedException());
+	asciiTree(this->_target);
 }

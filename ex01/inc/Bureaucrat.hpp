@@ -1,7 +1,8 @@
-#ifndef BUREAUCRAT_HPP
-#define BUREAUCRAT_HPP
+#ifndef Bureaucrat_HPP
+#define Bureaucrat_HPP
 
 #include <iostream>
+#include <exception>
 #include "Form.hpp"
 
 class Form;
@@ -17,21 +18,25 @@ class Bureaucrat {
 		Bureaucrat(const Bureaucrat& other);
 		Bureaucrat& operator=(const Bureaucrat& other);
 		~Bureaucrat();
-		class GradeTooHighException : public std::exception{
+
+		class GradeTooLowException : public std::exception {
 			public:
-				const char * what() const throw();
+				const char* what() const throw();
 		};
-		class GradeTooLowException : public std::exception{
+
+		class GradeTooHighException : public std::exception {
 			public:
-				const char * what() const throw();
+				const char* what() const throw();
 		};
+
 		std::string getName() const;
 		int getGrade() const;
 		void increment();
 		void decrement();
-		void signForm(Form &f);
+
+		void signForm(Form& form);
 };
 
-std::ostream& operator<<(std::ostream& os, const Bureaucrat& bureaucrat);
+std::ostream& operator<<(std::ostream& o, Bureaucrat &bur);
 
 #endif
